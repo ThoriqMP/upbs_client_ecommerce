@@ -1,5 +1,7 @@
 import './bootstrap';
 import './categoryScroll.js';
+import './cart.js';
+import './render-cart.js';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 

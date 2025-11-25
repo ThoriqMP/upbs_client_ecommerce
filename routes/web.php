@@ -2,16 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
 
 
 
-// Katalog
-Route::get('/katalog', function () {
-    return view('katalog');
-})->name('katalog');
+use App\Http\Controllers\CatalogController;
+
+Route::get('/', [CatalogController::class, 'homeindex'])->name('home');
+Route::get('/katalog', [CatalogController::class, 'catalogindex'])->name('katalog');
+
 
 use App\Http\Controllers\CartController;
 

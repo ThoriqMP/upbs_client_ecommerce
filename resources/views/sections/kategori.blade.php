@@ -1,7 +1,7 @@
 <section class="relative py-16 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
 
-        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center mt-4">Kategori Produk</h2>
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center mt-4">Komoditas</h2>
 
         <!-- Tombol scroll kiri -->
         <button id="scrollLeft"
@@ -14,32 +14,32 @@
 
         <!-- Scroll Container -->
         <div id="categoryScroll" class="mt-4 flex gap-6 overflow-x-auto scroll-smooth no-scrollbar pb-4 relative z-10">
-            @foreach ([
-                ['nama' => 'Padi', 'icon' => '🌾'],
-                ['nama' => 'Jagung', 'icon' => '🌽'],
-                ['nama' => 'Ubi', 'icon' => '🥔'],
-                ['nama' => 'Kedelai', 'icon' => '🌱'],
-                ['nama' => 'Kacang Hijau', 'icon' => '🫘'],
-                ['nama' => 'Gandum', 'icon' => '🌾'],
-                ['nama' => 'Sorgum', 'icon' => '🌿'],
-                ['nama' => 'Kentang', 'icon' => '🥔'],
-                ['nama' => 'Talas', 'icon' => '🍠']
-            ] as $kategori)
+            @forelse ($commodities as $commodity)
                 <div
-                    class="group relative min-w-[180px] flex-shrink-0 rounded-2xl border border-white/30 bg-white/10 backdrop-blur-md shadow-lg p-6 text-center hover:scale-105 transition-all duration-300 cursor-pointer">
-                    <div class="text-4xl mb-3">{{ $kategori['icon'] }}</div>
-                    <p class="font-semibold text-gray-800">{{ $kategori['nama'] }}</p>
+                    class="group relative min-w-[180px] flex-shrink-0 rounded-2xl border border-gray-100 bg-white shadow-md p-6 text-center hover:scale-105 transition-all duration-300 cursor-pointer">
+                    
+                    <!-- Gambar Komoditas -->
+                    <div class="h-24 w-24 mx-auto mb-3 flex items-center justify-center overflow-hidden rounded-full bg-gray-50">
+                        <img src="{{ $commodity['image'] ?? asset('resources/img/sample-commodity.jpg') }}"
+                             alt="{{ $commodity['name'] }}"
+                             class="object-contain w-full h-full group-hover:scale-110 transition-transform duration-300">
+                    </div>
+
+                    <!-- Nama Komoditas -->
+                    <p class="font-semibold text-gray-800">{{ $commodity['name'] }}</p>
 
                     <!-- Tombol muncul saat hover -->
                     <div
-                        class="absolute inset-0 bg-white/40 backdrop-blur-md rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <a href="#"
-                            class="bg-gray-900/60 text-white px-4 py-2 rounded-lg text-sm shadow hover:bg-gray-900/90 transition-all duration-200">
+                        class="absolute inset-0 bg-white/60 backdrop-blur-md rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <a href="{{ url('/katalog?commodity=' . $commodity['slug']) }}"
+                            class="bg-gray-900/70 text-white px-4 py-2 rounded-lg text-sm shadow hover:bg-gray-900/90 transition-all duration-200">
                             Lihat Produk
                         </a>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p class="text-center text-gray-600 w-full">Belum ada kategori produk tersedia.</p>
+            @endforelse
         </div>
 
         <!-- Tombol scroll kanan -->
@@ -53,3 +53,30 @@
 
     </div>
 </section>
+
+<script>
+    const scrollContainer = document.getElementById('categoryScroll');
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
+
+    scrollLeftBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    // Tampilkan tombol scroll hanya jika ada overflow
+    const toggleScrollButtons = () => {
+        if (scrollContainer.scrollWidth > scrollContainer.clientWidth) {
+            scrollLeftBtn.classList.remove('hidden');
+            scrollRightBtn.classList.remove('hidden');
+        } else {
+            scrollLeftBtn.classList.add('hidden');
+            scrollRightBtn.classList.add('hidden');
+        }
+    };
+    toggleScrollButtons();
+    window.addEventListener('resize', toggleScrollButtons);
+</script>

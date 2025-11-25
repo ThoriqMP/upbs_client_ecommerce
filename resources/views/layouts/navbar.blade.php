@@ -27,27 +27,27 @@
          Tentang Kami
       </a>
     </li>
+    <li>
+      <a href="#"
+         class="hover:text-indigo-600 transition">
+         Cek Pesanan
+      </a>
+    </li>
   </ul>
 
   <!-- 🌾 Ikon kanan -->
   <div class="flex items-center space-x-4">
-    <!-- 🛒 Keranjang -->
-    <div class="relative cursor-pointer" id="cartIcon">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-        stroke-width="1.8" stroke="currentColor"
-        class="w-6 h-6 text-gray-800 hover:text-indigo-600 transition">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M2.25 3h1.386c.51 0 .955.343 1.087.836L5.67 8.25M7.5 14.25h9.75m-9.75 0a3 3 0 01-2.91-2.25L3.75 6.75m3.75 7.5h10.5a3 3 0 002.91-2.25l1.047-4.5a1.125 1.125 0 00-1.09-1.5H6.375m1.125 13.5a1.125 1.125 0 11-2.25 0m13.5 0a1.125 1.125 0 11-2.25 0" />
-      </svg>
-      <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full px-[5px] py-[1px]">3</span>
+    <!-- 🛒 Keranjang (FA Icon) -->
+    <div id="cartIcon" class="relative cursor-pointer" >
+      <i class="fa fa-shopping-cart text-gray-800 text-xl hover:text-indigo-600 transition"></i>
+      <span id="cartBadge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full px-[5px] py-[1px]">3</span>
     </div>
 
     <!-- 🍔 Menu mobile -->
     <button id="menuToggle" class="md:hidden focus:outline-none">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
         stroke-width="2" stroke="currentColor" class="w-7 h-7 text-gray-800">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M4 6h16M4 12h16M4 18h16" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
   </div>
@@ -72,6 +72,20 @@
         <a href="#"
            class="block px-3 py-2 rounded-lg hover:bg-[#B4DEBD]/40 transition">
            Tentang Kami
+        </a>
+      </li>
+      <li>
+        <a href="#"
+           class="block px-3 py-2 rounded-lg hover:bg-[#B4DEBD]/40 transition">
+           Cek Pesanan
+        </a>
+      </li>
+
+      <!-- 🛒 Keranjang di Mobile -->
+      <li>
+        <a href="#" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-[#B4DEBD]/40 transition">
+          <i class="fa fa-shopping-cart text-gray-800"></i>
+          <span>Keranjang</span>
         </a>
       </li>
     </ul>
